@@ -45,3 +45,9 @@ class Person(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
+
+class Task(models.Model):
+    text = models.TextField()
+    last_update = models.DateTimeField(auto_now=True)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='tasks')

@@ -1,13 +1,5 @@
 {% extends "memapp/base.html" %}
-
-{% block content %}
-<h1>Home</h1>
-{% if user.is_authenticated %}
+{% block head_title %}Home{% endblock %}
+{% block auth %}
 <p>Welcome {{ user.username }} !!!</p>
-<a href="{% url 'logout' %}">Logout</a>
-{% else %}
-<p>Welcome Guest!!!</p>
-<a href="{% url 'register' %}">Register</a><br>
-<a href="{% url 'login' %}">Login</a>
-{% endif %}
 {% endblock %}
