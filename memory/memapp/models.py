@@ -48,6 +48,7 @@ class Person(AbstractBaseUser, PermissionsMixin):
 
 
 class Task(models.Model):
+    theme = models.CharField(max_length=120)
     text = models.TextField()
     last_update = models.DateTimeField(auto_now=True)
     person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='tasks')

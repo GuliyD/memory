@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 def home_view(request):
     return render(request, 'memapp/home.html')
 
 
+@login_required
 def register_view(request):
     context = {}
     if request.POST:
@@ -26,8 +28,8 @@ def register_view(request):
     return render(request, 'memapp/registration.html', context)
 
 
+@login_required
 def logout_view(request):
-
     logout(request)
     return redirect('home')
 
@@ -48,3 +50,13 @@ def login_view(request):
         form = LoginForm()
     context['form'] = form
     return render(request, 'memapp/login.html', context)
+
+
+@login_required
+def account_view(request):
+    return render(request, 'memapp/account.html')
+
+
+@login_required
+def create_task_view(request):
+

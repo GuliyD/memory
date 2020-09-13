@@ -133,3 +133,5 @@ MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'memapp.Person'
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+LOGIN_URL = 'login'
