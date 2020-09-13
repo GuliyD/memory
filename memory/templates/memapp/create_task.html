@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "memapp/base.html" %}
+
+
+{% block head_title %}Create task{% endblock %}
+
+
+{% block auth %}
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <p>{{ field.label_tag }}
+            {{ field }}</p>
+        {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+    {% endfor %}
+
+    <button type="submit">create</button>
+</form>
+{% endblock %}

@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, LoginForm
+from .forms import RegistrationForm, LoginForm, CreateTaskForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .models import Task
+
+import datetime
 
 
 def home_view(request):
     return render(request, 'memapp/home.html')
 
 
-@login_required
 def register_view(request):
     context = {}
     if request.POST:
@@ -59,4 +61,20 @@ def account_view(request):
 
 @login_required
 def create_task_view(request):
+    context = {}
+    if request.POST:
+        form = CreateTaskForm(request.POST)
+        if form.is_valid():
+            theme = form.cleaned_data.get('theme')
+            text = form.cleaned_data.get('text')
+            request.user.tasks.create(theme=theme, text=text, last_update=datetime.datetime.now())
+            return redirect('home')
+    else:
+        form = CreateTaskForm()
+    context['form'] = form
+    return render(request, 'memapp/create_task.html', context)
 
+
+@login_required
+def task_view(request):
+    pass

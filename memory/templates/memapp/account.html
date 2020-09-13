@@ -1,4 +1,10 @@
-{% extends 'memapp/base.html' %}
+{% extends "memapp/base.html" %}
 
-{% block head_title %}{{ user.username }}{% endblock %}
 
+{% block head_title %}Account{% endblock %}
+
+{% block auth %}
+{% for task in user.tasks.all %}
+    <a href="{% url 'task' task.id %}">{{ task.theme }}</a>
+{% endfor %}
+{% endblock %}

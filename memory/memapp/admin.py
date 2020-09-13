@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Person
+from .models import Person, Task
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -13,4 +13,5 @@ class PersonAdmin(UserAdmin):
 
 
 admin.site.register(Person, PersonAdmin)
+admin.site.register(Task)
 
