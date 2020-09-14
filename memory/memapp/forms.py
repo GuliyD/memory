@@ -17,5 +17,5 @@ class LoginForm(forms.Form):
 
 
 class CreateTaskForm(forms.Form):
-    theme = forms.CharField(max_length=120)
-    text = forms.CharField(widget=forms.Textarea)
+    theme = forms.CharField(max_length=120, required=True)
+    text = forms.CharField(widget=forms.Textarea, required=True)

@@ -76,5 +76,8 @@ def create_task_view(request):
 
 
 @login_required
-def task_view(request):
-    pass
+def task_view(request, task_id):
+    context = {}
+    task = request.user.tasks.get(id=task_id)
+    context['task'] = task
+    return render(request, 'memapp/task.html', context)

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "memapp/base.html" %}
+
+
+{% block head_title %}Task{% endblock %}
+
+{% block auth %}
+<p>{{ task.theme }}</p>
+<p>{{ task.text }}</p>
+<p>{{ task.last_update }}</p>
+{% endblock %}
