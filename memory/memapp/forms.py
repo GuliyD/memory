@@ -12,8 +12,8 @@ class RegistrationForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(max_length=60)
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(max_length=60, required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
 
 
 class CreateTaskForm(forms.Form):
