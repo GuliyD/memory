@@ -53,3 +53,21 @@ def login_form_serves(request, form_class, context):
     else:
         form = form_class()
     return form
+
+
+def create_contact_form_serves(request, form_class):
+    if request.POST:
+        form = form_class(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            surname = form.cleaned_data.get('surname')
+            birthday = form.cleaned_data.get('birthday')
+            notes = form.cleaned_data.get('notes')
+            request.user.contacts.create(name=name, surname=surname, birthday=birthday, notes=notes)
+    else:
+        form = form_class()
+    return form
+
+
+def get_current_contact(request, contact_id):
+    return request.user.contacts.get(id=contact_id)

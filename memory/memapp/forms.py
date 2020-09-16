@@ -19,3 +19,10 @@ class LoginForm(forms.Form):
 class CreateTaskForm(forms.Form):
     theme = forms.CharField(max_length=120, required=True)
     text = forms.CharField(widget=forms.Textarea, required=True)
+
+
+class CreateContactForm(forms.Form):
+    name = forms.CharField(max_length=60, required=True)
+    surname = forms.CharField(max_length=60, required=False)
+    birthday = forms.DateField(required=False, input_formats=['%d-%m-%Y', '%d.%m.%Y'])
+    notes = forms.CharField(widget=forms.Textarea, required=False)

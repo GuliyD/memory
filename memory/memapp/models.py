@@ -52,3 +52,21 @@ class Task(models.Model):
     text = models.TextField()
     last_update = models.DateTimeField(auto_now=True)
     person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='tasks')
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=60)
+    surname = models.CharField(max_length=60, blank=True, null=True)
+    birthday = models.DateField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='contacts')
+
+
+class ContactPhoto(models.Model):
+    photo = models.ImageField()
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+
+
+class ContactPhoneNumber(models.Model):
+    phone_number = models.CharField(max_length=30)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)

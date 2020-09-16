@@ -4,7 +4,15 @@
 {% block head_title %}Account{% endblock %}
 
 {% block auth %}
+<h2>Tasks:</h2>
 {% for task in user.tasks.all %}
     <a href="{% url 'task' task.id %}">{{ task.theme }}</a>
 {% endfor %}
+<br><br><br><br><br>
+<h2>Contacts:</h2>
+{% for contact in user.contacts.all %}
+    <a href="{% url 'contact' contact.id %}">{{ contact.name }}</a>
+{% endfor %}
 {% endblock %}
+
+
